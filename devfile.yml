@@ -25,10 +25,10 @@ components:
       - name: HTTPS_PROXY
         value: http://<proxy-host>:<proxy-port>
       - name: MYSQL_USER
-          valueFrom:
-            secretKeyRef:
-              name: mysql
-              key: database-user
+        valueFrom:
+          secretKeyRef:
+            name: mysql
+            key: database-user
       - name: MYSQL_PASSWORD
         valueFrom:
           secretKeyRef:
