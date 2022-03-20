@@ -1,0 +1,46 @@
+schemaVersion: 2.0.0
+metadata:
+name: phpmyadmin
+starterProjects:
+- name: phpmyadmin-starter
+  git:
+    remotes:
+      origin: "https://github.com/odo-devfiles/phpmyadmin-ex.git"
+components:
+- name: runtime
+  container:
+    image: imageName: phpmyadmin:latest
+      dockerfile: 
+        uri: docker/Dockerfile
+        buildContext: .
+        rootRequired: false
+    memoryLimit: 1024Mi
+    endpoints:
+      - name: "443/tcp"
+        targetPort: 443
+    env:
+      - name: HTTP_PROXY
+        value: http://<proxy-host>:<proxy-port>
+      - name: HTTPS_PROXY
+        value: http://<proxy-host>:<proxy-port>
+      - name: MYSQL_USER
+          valueFrom:
+            secretKeyRef:
+              name: mysql
+              key: database-user
+      - name: MYSQL_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: mysql
+            key: database-password
+      - name: MYSQL_ROOT_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: mysql
+            key: database-root-password
+      - name: MYSQL_DATABASE
+        valueFrom:
+          secretKeyRef:
+            name: mysql
+            key: database-name
+    mountSources: true
