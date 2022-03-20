@@ -24,24 +24,4 @@ components:
         value: http://<proxy-host>:<proxy-port>
       - name: HTTPS_PROXY
         value: http://<proxy-host>:<proxy-port>
-      - name: MYSQL_USER
-        valueFrom:
-          secretKeyRef:
-            name: mysql
-            key: database-user
-      - name: MYSQL_PASSWORD
-        valueFrom:
-          secretKeyRef:
-            name: mysql
-            key: database-password
-      - name: MYSQL_ROOT_PASSWORD
-        valueFrom:
-          secretKeyRef:
-            name: mysql
-            key: database-root-password
-      - name: MYSQL_DATABASE
-        valueFrom:
-          secretKeyRef:
-            name: mysql
-            key: database-name
     mountSources: true
