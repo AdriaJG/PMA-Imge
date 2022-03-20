@@ -9,7 +9,8 @@ starterProjects:
 components:
 - name: runtime
   container:
-    image: imageName: phpmyadmin:latest
+    image:
+      imageName: phpmyadmin:latest
       dockerfile: 
         uri: docker/Dockerfile
         buildContext: .
